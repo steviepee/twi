@@ -1,18 +1,31 @@
 
 $(document).ready(() => {
   const $body = $('body');
-  //$body.html('');
-  //////////////////// FIX YO! FACE //////////////////////////////////
+  $body.html('');
+  $body.css(`background`, `yellow`)
   
   ///Create a div atop the regular body upon which to lay the tweets
   $body.append(`<div id="face"></div>`)
   //make it easier..
   const $face = $(`#face`)
   /// face css///
-  $face.css('height', '820px')
+  //////////////////// FIX YO! FACE //////////////////////////////////
+  $face.css({
+    width: `900px`,
+    overflow: `hidden`,
+    text_align: `left`, 
+    margin: `20px 0 20px 0`,
+    // height: '100%',
+
+     position: "right",
+   // background: "yellow",
+    //display: `grid`,
+    place_items: `right`,
+    //align_items: `center`
+  })
   /////////////////
   let matrix = streams.home
-  $face.append(`<button id="add-tweets">YO!</button>`)
+  $body.prepend(`<button id="add-tweets">YO!</button>`)
   let $tweeter = $(`#add-tweets`)
 /////TWEET OBJECT ///////////////////////Still add path to username page on each one
   const $tweets = streams.home.map((tweet) => {
@@ -43,45 +56,73 @@ $(document).ready(() => {
       let tweet = tweets[spot];
       //at each iteration, add the tweetz div with all the same things $tweets holds
       //adding them directly  to the div here.
-      $(`${tweet[`user`]}`).attr(`color`, `red`);
-      $(`${tweets[spot].user}`).attr(`background-color`, `blue`);
-      $face.append(`<div class="tweetz">@${tweet.user}: ${tweet.message}
+     // $(`${tweet[`user`]}`).attr(`color`, `red`);
+     // $(`${tweets[spot].user}`).attr(`background-color`, `blue`);
+      $face.append(`<div id="${tweet.user}"class="tweetz">@${tweet.user}: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
     ${moment(tweet.created_at).fromNow()}</div>`);
-      spot--;
-    }
-  }//set the postTweets command to the Yo button
-  postTweets(streams.home);
-  $tweeter.on(`click`, function (){
-      return postTweets(streams.home);
+    /////////////////////// TWEETZ STYLES!!  //////////////////////
+    $('.tweetz').css({
+      align_items: `right`,
+     display: `inline-block`,
+      border: `12px outset red`,
+      text_shadow: `20px 20px lightblue`,
+      // border_style: `solid`,
+      // border_color: `black`,
+      margin: `20px`,
+     // background_color: `pink`
+     padding: '2em',
+     width: '70%',
+     height: '20px',
+     //box_sizing: 'border-box',
+    
+     
+    
+    })
+    spot--;
+  }
+}//set the postTweets command to the Yo button
+postTweets(streams.home);
+$tweeter.on(`click`, function (){
+  //There were just too many of them, so cut the stream short to the most recent 10.
+  return postTweets(streams.home.slice(streams.home.length - 10, streams.home.length - 1));
   });
   //$(`.tweetz.tweet.user`).css(`color`, `red`);
 
 
   //////////////  SIDEBAR!!  ////////////////////////////////////
   //////////////////////////////////////////////////////////////
-  $body.append(`<div id="yO-tweet"class="sidebar"></div>`
+  $body.append(`<div id="side-clicks"class="sidebar"></div>`)
 
-  
+ const $sideClicks = $(`#side-clicks`); 
+$sideClicks.css(`display`, `inline`);
+  $sideClicks.css(`margin`, `10`);
+  $sideClicks.css(`padding`, `8`);
+  $sideClicks.css(`width`, `320px`);
+  $sideClicks.css(`background-color`, `green`);
+  $sideClicks.css(`position`, `absolute`);
+  $sideClicks.css(`height`, `1000px`);
+  $sideClicks.css(`right`, `25px`);
+  $sideClicks.css(`font-size`, `36px`);
+  $sideClicks.css(`margin-left`, `50px`);
+  $sideClicks.css(`top`, `110px`);
 
-//   .sidebar {
-//     margin: 0;
-//     padding: 0;
-//     width: '200px';
-//    // background-color: #f1f1f1;
-//     position: fixed;
-//     height: '100px';
-
-//   }
-// });
+$sideClicks.append(`<form id="yo-tweet class="tweet-click"></form>`);
+$(`#yo-tweet`).append(`<div id="yo-name" class="tweet-click"></div>`);
+$(`#yo-name`).append(`<label id="username" class="tweet-click" for="name">& You Are?</label>
+  <input type="text" id="name" class="tweet-click" />`);
+$(`#yo-tweet`).append(`<div id="yo-message" class="tweet-click"></div>`);
+$(`#yo-message`).append(`<label for="msg>Speak Yo mind!</label>
+  <textarea id="msg" class="tweet-click" placeholder="Whatchu say?"></textarea>`);
+  $(`#yo-tweet`).append(`<button id="post-tweet" class="tweet-click"type="submit"`);
 
 
 
 
-/**possible need to fetch bunches of tweets
- * const getTweets = () => {
- * return fetch([group of tweets]).then(tweets => {
- * return tweets.json();
- * })
- * }
- */
+
+
+
+});
+
+
+
