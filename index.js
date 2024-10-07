@@ -17,6 +17,9 @@ $(document).ready(() => {
 /////TWEET OBJECT ///////////////////////Still add path to username page on each one
   const $tweets = streams.home.map((tweet) => {
     const $tweet = $('<div class="tweetz"></div>');
+    $(`${tweet.user}`).on('mouseover', function (){
+      alert("It Works!!!")
+    });
     const text = `@${tweet.user}: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss a')}
     ${moment(tweet.created_at).fromNow()}`
@@ -30,7 +33,7 @@ $(document).ready(() => {
    // $face.append($tweets);
  // }
   //$face.append($tweets);
-  
+  console.log(users)
   const postTweets = tweets => {
     //iterate through the array backwards(compensate for reverse order)
     let spot = tweets.length - 1;
@@ -40,18 +43,37 @@ $(document).ready(() => {
       let tweet = tweets[spot];
       //at each iteration, add the tweetz div with all the same things $tweets holds
       //adding them directly  to the div here.
+      $(`${tweet[`user`]}`).attr(`color`, `red`);
+      $(`${tweets[spot].user}`).attr(`background-color`, `blue`);
       $face.append(`<div class="tweetz">@${tweet.user}: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
     ${moment(tweet.created_at).fromNow()}</div>`);
-    console.log(tweets[spot])
       spot--;
     }
   }//set the postTweets command to the Yo button
-  //console.log(matrix);
+  postTweets(streams.home);
   $tweeter.on(`click`, function (){
       return postTweets(streams.home);
   });
-});
+  //$(`.tweetz.tweet.user`).css(`color`, `red`);
+
+
+  //////////////  SIDEBAR!!  ////////////////////////////////////
+  //////////////////////////////////////////////////////////////
+  $body.append(`<div id="yO-tweet"class="sidebar"></div>`
+
+  
+
+//   .sidebar {
+//     margin: 0;
+//     padding: 0;
+//     width: '200px';
+//    // background-color: #f1f1f1;
+//     position: fixed;
+//     height: '100px';
+
+//   }
+// });
 
 
 
