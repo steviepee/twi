@@ -115,7 +115,7 @@ $sideClicks.append(`<form id="yo-tweet class="tweet-click">
   <div id="yo-message" class="tweet-click">
   <label id="x2"for="msg>Speak Yo mind!</label>
   </div>
-  <button id="post-tweet" class="tweet-click"type="submit"></button>
+  <button id="fake-butt" class="tweet-click"type="submit"></button>
   </form>`
   );
 
@@ -127,12 +127,17 @@ $(`.tweet-click textarea`).css ({
   width: `280px`,
   margin: `10px`,
   padding: `8px`,
-  display: `4px outset gold `,
+  //display: `4px outset gold `,
 })
-
-// $(`msg`).css(`height`, `400px`);
-// $(``).css(`width`, `50px`);
-
+$username = $(`#username`)
+//write a tweet button
+$(`#post-tweet`).on(`click`, function () {
+  window.visitor = $username;
+  if(!streams.users.hasOwnProperty($username)){streams.users[$username] = []}
+  writeTweet($(`#msg`));
+  console.log(matrix.slice(matrix.length - 1))
+  return postTweets(matrix.slice(matrix.length = 1));
+})
 
 
 
