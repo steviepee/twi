@@ -107,15 +107,21 @@ $sideClicks.css(`display`, `inline`);
   $sideClicks.css(`margin-left`, `50px`);
   $sideClicks.css(`top`, `110px`);
 
-$sideClicks.append(`<form id="yo-tweet class="tweet-click"></form>`);
-$(`#yo-tweet`).append(`<div id="yo-name" class="tweet-click"></div>`);
-$(`#yo-name`).append(`<label id="username" class="tweet-click" for="name">& You Are?</label>
-  <input type="text" id="name" class="tweet-click" />`);
-$(`#yo-tweet`).append(`<div id="yo-message" class="tweet-click"></div>`);
-$(`#yo-message`).append(`<label for="msg>Speak Yo mind!</label>
-  <textarea id="msg" class="tweet-click" placeholder="Whatchu say?"></textarea>`);
-  $(`#yo-tweet`).append(`<button id="post-tweet" class="tweet-click"type="submit"`);
+$sideClicks.append(`<form id="yo-tweet class="tweet-click">
+  <div id="yo-name" class="tweet-click">
+  <label id="username" class="tweet-click" for="name">& You Are?</label>
+  <input type="text" id="name" class="tweet-click" />
+  </div>
+  <div id="yo-message" class="tweet-click">
+  <label for="msg>Speak Yo mind!</label>
+  <textarea id="msg" class="tweet-click" placeholder="Whatchu say?"></textarea>
+  </div>
+  <button id="post-tweet" class="tweet-click"type="submit">Yo yo!</button>
+  </form>`
+  );
 
+
+  
 
 
 
