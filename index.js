@@ -103,25 +103,35 @@ $sideClicks.css(`display`, `inline`);
   $sideClicks.css(`position`, `absolute`);
   $sideClicks.css(`height`, `1000px`);
   $sideClicks.css(`right`, `25px`);
-  $sideClicks.css(`font-size`, `36px`);
+  $sideClicks.css(`font-size`, `20px`);
   $sideClicks.css(`margin-left`, `50px`);
   $sideClicks.css(`top`, `110px`);
-
+/////////////////////////  MAKE YOUR TWEET FORM ////////////////////////////////////
 $sideClicks.append(`<form id="yo-tweet class="tweet-click">
   <div id="yo-name" class="tweet-click">
   <label id="username" class="tweet-click" for="name">& You Are?</label>
   <input type="text" id="name" class="tweet-click" />
   </div>
   <div id="yo-message" class="tweet-click">
-  <label for="msg>Speak Yo mind!</label>
-  <textarea id="msg" class="tweet-click" placeholder="Whatchu say?"></textarea>
+  <label id="x2"for="msg>Speak Yo mind!</label>
   </div>
-  <button id="post-tweet" class="tweet-click"type="submit">Yo yo!</button>
+  <button id="post-tweet" class="tweet-click"type="submit"></button>
   </form>`
   );
 
+  $(`#x2`).append(`<textarea id="msg" class="tweet-click" placeholder="Whatchu say?"></textarea>`);
+  $sideClicks.append(`<button id="post-tweet" class="tweet-click"type="submit">Yo yo!</button>`);
+$(`.tweet-click textarea`).css ({
+  vertical_align: `right`,
+  height: `70px`,
+  width: `280px`,
+  margin: `10px`,
+  padding: `8px`,
+  display: `4px outset gold `,
+})
 
-  
+// $(`msg`).css(`height`, `400px`);
+// $(``).css(`width`, `50px`);
 
 
 
