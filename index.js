@@ -103,7 +103,7 @@ const singTweet = tweet => {
   $(`${tweet.user}`).click( function(){
     alert(`Huzzah!!`);
   })
-  $face.prepend(`<div id="${tweet.user}"class="tweetz"><span class="clickit">@${tweet.user}</span>: ${tweet.message}
+  $face.prepend(`<div id="${tweet.user}"class="tweetz"><span class="flickit">@${tweet.user}</span>: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
     ${moment(tweet.created_at).fromNow()}</div>`);
     $('.tweetz').css({
@@ -123,7 +123,7 @@ const singTweet = tweet => {
       
       
     })
-    $(`.clickit`).on(`click`, function(e) {
+    $(`.flickit`).on(`click`, function(e) {
      e.stopPropagation;
      return console.log(`You're doing it, Peter!`);
      
