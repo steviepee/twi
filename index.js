@@ -51,6 +51,7 @@ $(document).ready(() => {
     //iterate through the array backwards(compensate for reverse order)
     let spot = tweets.length - 1;
     //until we reach the 0 index
+    //console.log(spot)
     while (spot >= 0){
       //set a variable for array[nth]
       let tweet = tweets[spot];
@@ -58,7 +59,7 @@ $(document).ready(() => {
       //adding them directly  to the div here.
      // $(`${tweet[`user`]}`).attr(`color`, `red`);
      // $(`${tweets[spot].user}`).attr(`background-color`, `blue`);
-      $face.append(`<div id="${tweet.user}"class="tweetz"><span class="clickit">@${tweet.user}</span>: ${tweet.message}
+      $face.append(`<div id="${tweet.user}2"class="tweetz"><span id="${tweet.user}"class="clickit">@${tweet.user}</span>: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
     ${moment(tweet.created_at).fromNow()}</div>`);
    
@@ -93,7 +94,12 @@ $tweeter.on(`click`, function (){
 //$(`.tweetz.tweet.user`).css(`color`, `red`);
 $(`.clickit`).on(`click`, function(e) {
   e.stopPropagation;
-  return console.log(`You're doing it, Peter!`);
+ // return console.log(`You're doing it, Peter!`);
+ //console.log(this.id)
+ $face.empty();
+ //$(`.tweetz`).empty();
+  postTweets(streams.home.filter(tweet => tweet.user === this.id))
+
   
  });
 /////////////////// MAKE JUST ONE TWEET!! /////////////////////////
@@ -125,7 +131,7 @@ const singTweet = tweet => {
     })
     $(`.flickit`).on(`click`, function(e) {
      e.stopPropagation;
-     return console.log(`You're doing it, Peter!`);
+     //return console.log(`You're doing it, Peter!`);
      
     });
   }
@@ -135,13 +141,14 @@ const singTweet = tweet => {
   $body.append(`<div id="side-clicks"class="sidebar"></div>`)
   
   const $sideClicks = $(`#side-clicks`); 
-  $sideClicks.css(`display`, `inline`);
+  $sideClicks.css(`display`, `outset`);
   $sideClicks.css(`margin`, `10`);
   $sideClicks.css(`padding`, `8`);
   $sideClicks.css(`width`, `320px`);
-  $sideClicks.css(`background-color`, `green`);
+  $sideClicks.css(`border`, `8px outset gold`);
+  $sideClicks.css(`background`, `green`);
   $sideClicks.css(`position`, `absolute`);
-  $sideClicks.css(`height`, `1000px`);
+  $sideClicks.css(`height`, `400px`);
   $sideClicks.css(`right`, `25px`);
   $sideClicks.css(`font-size`, `20px`);
   $sideClicks.css(`margin-left`, `50px`);
