@@ -88,7 +88,34 @@ $tweeter.on(`click`, function (){
   return postTweets(streams.home.slice(streams.home.length - 10, streams.home.length - 1));
   });
   //$(`.tweetz.tweet.user`).css(`color`, `red`);
+/////////////////// MAKE JUST ONE TWEET!! /////////////////////////
 
+const singTweet = tweet => {
+//copy tweetz css for writeTweet function:
+$(`${tweet.user}`).click( function(){
+  alert(`Huzzah!!`);
+})
+$face.prepend(`<div id="${tweet.user}"class="tweetz">@${tweet.user}: ${tweet.message}
+  ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
+  ${moment(tweet.created_at).fromNow()}</div>`);
+  $('.tweetz').css({
+    align_items: `right`,
+   display: `inline-block`,
+    border: `12px outset red`,
+    text_shadow: `20px 20px lightblue`,
+    // border_style: `solid`,
+    // border_color: `black`,
+    margin: `20px`,
+   // background_color: `pink`
+   padding: '2em',
+   width: '70%',
+   height: '20px',
+   //box_sizing: 'border-box',
+  
+   
+  
+  })
+}
 
   //////////////  SIDEBAR!!  ////////////////////////////////////
   //////////////////////////////////////////////////////////////
@@ -119,7 +146,7 @@ $sideClicks.append(`<form id="yo-tweet class="tweet-click">
   </form>`
   );
 
-  $(`#x2`).append(`<textarea id="msg" class="tweet-click" placeholder="Whatchu say?"></textarea>`);
+  $(`#x2`).append(`<textarea id="msg" name="clicker" class="tweet-click" placeholder="Whatchu say?"></textarea>`);
   $sideClicks.append(`<button id="post-tweet" class="tweet-click"type="submit">Yo yo!</button>`);
 $(`.tweet-click textarea`).css ({
   vertical_align: `right`,
@@ -132,14 +159,17 @@ $(`.tweet-click textarea`).css ({
 $username = $(`#username`)
 //write a tweet button
 $(`#post-tweet`).on(`click`, function () {
-  window.visitor = $username;
-  if(!streams.users.hasOwnProperty($username)){streams.users[$username] = []}
-  writeTweet($(`#msg`));
+  document.preventDefault;
+  let dude = document.querySelector(`input[type="text"]`).value
+  let stuff = document.getElementById(`msg`).value
+  window.visitor = document.querySelector(`input[type="text"]`).value
+  if(!streams.users.hasOwnProperty(dude)){streams.users[dude] = []}
+  writeTweet(stuff);
   console.log(matrix.slice(matrix.length - 1))
-  return postTweets(matrix.slice(matrix.length = 1));
+  return singTweet(matrix[matrix.length - 1]);
 })
 
-
+console.log(document.querySelectorAll(`.tweetz`))
 
 
 
