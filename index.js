@@ -58,26 +58,29 @@ $(document).ready(() => {
       //adding them directly  to the div here.
      // $(`${tweet[`user`]}`).attr(`color`, `red`);
      // $(`${tweets[spot].user}`).attr(`background-color`, `blue`);
-      $face.append(`<div id="${tweet.user}"class="tweetz">@${tweet.user}: ${tweet.message}
+      $face.append(`<div id="${tweet.user}"class="tweetz"><span class="clickit">@${tweet.user}</span>: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
     ${moment(tweet.created_at).fromNow()}</div>`);
+   
+    
+    
     /////////////////////// TWEETZ STYLES!!  //////////////////////
     $('.tweetz').css({
       align_items: `right`,
-     display: `inline-block`,
+      display: `inline-block`,
       border: `12px outset red`,
       text_shadow: `20px 20px lightblue`,
       // border_style: `solid`,
       // border_color: `black`,
       margin: `20px`,
-     // background_color: `pink`
-     padding: '2em',
-     width: '70%',
-     height: '20px',
-     //box_sizing: 'border-box',
-    
-     
-    
+      // background_color: `pink`
+      padding: '2em',
+      width: '70%',
+      height: '20px',
+      //box_sizing: 'border-box',
+      
+      
+      
     })
     spot--;
   }
@@ -86,43 +89,53 @@ postTweets(streams.home);
 $tweeter.on(`click`, function (){
   //There were just too many of them, so cut the stream short to the most recent 10.
   return postTweets(streams.home.slice(streams.home.length - 10, streams.home.length - 1));
-  });
-  //$(`.tweetz.tweet.user`).css(`color`, `red`);
+});
+//$(`.tweetz.tweet.user`).css(`color`, `red`);
+$(`.clickit`).on(`click`, function(e) {
+  e.stopPropagation;
+  return console.log(`You're doing it, Peter!`);
+  
+ });
 /////////////////// MAKE JUST ONE TWEET!! /////////////////////////
 
 const singTweet = tweet => {
-//copy tweetz css for writeTweet function:
-$(`${tweet.user}`).click( function(){
-  alert(`Huzzah!!`);
-})
-$face.prepend(`<div id="${tweet.user}"class="tweetz">@${tweet.user}: ${tweet.message}
-  ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
-  ${moment(tweet.created_at).fromNow()}</div>`);
-  $('.tweetz').css({
-    align_items: `right`,
-   display: `inline-block`,
-    border: `12px outset red`,
-    text_shadow: `20px 20px lightblue`,
-    // border_style: `solid`,
-    // border_color: `black`,
-    margin: `20px`,
-   // background_color: `pink`
-   padding: '2em',
-   width: '70%',
-   height: '20px',
-   //box_sizing: 'border-box',
-  
-   
-  
+  //copy tweetz css for writeTweet function:
+  $(`${tweet.user}`).click( function(){
+    alert(`Huzzah!!`);
   })
-}
-
+  $face.prepend(`<div id="${tweet.user}"class="tweetz"><span class="clickit">@${tweet.user}</span>: ${tweet.message}
+    ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
+    ${moment(tweet.created_at).fromNow()}</div>`);
+    $('.tweetz').css({
+      align_items: `right`,
+      display: `inline-block`,
+      border: `12px outset red`,
+      text_shadow: `20px 20px lightblue`,
+      // border_style: `solid`,
+      // border_color: `black`,
+      margin: `20px`,
+      // background_color: `pink`
+      padding: '2em',
+      width: '70%',
+      height: '20px',
+      //box_sizing: 'border-box',
+      
+      
+      
+    })
+    $(`.clickit`).on(`click`, function(e) {
+     e.stopPropagation;
+     return console.log(`You're doing it, Peter!`);
+     
+    });
+  }
+  
   //////////////  SIDEBAR!!  ////////////////////////////////////
   //////////////////////////////////////////////////////////////
   $body.append(`<div id="side-clicks"class="sidebar"></div>`)
-
- const $sideClicks = $(`#side-clicks`); 
-$sideClicks.css(`display`, `inline`);
+  
+  const $sideClicks = $(`#side-clicks`); 
+  $sideClicks.css(`display`, `inline`);
   $sideClicks.css(`margin`, `10`);
   $sideClicks.css(`padding`, `8`);
   $sideClicks.css(`width`, `320px`);
@@ -133,45 +146,44 @@ $sideClicks.css(`display`, `inline`);
   $sideClicks.css(`font-size`, `20px`);
   $sideClicks.css(`margin-left`, `50px`);
   $sideClicks.css(`top`, `110px`);
-/////////////////////////  MAKE YOUR TWEET FORM ////////////////////////////////////
-$sideClicks.append(`<form id="yo-tweet class="tweet-click">
-  <div id="yo-name" class="tweet-click">
-  <label id="username" class="tweet-click" for="name">& You Are?</label>
-  <input type="text" id="name" class="tweet-click" />
-  </div>
-  <div id="yo-message" class="tweet-click">
-  <label id="x2"for="msg>Speak Yo mind!</label>
-  </div>
-  <button id="fake-butt" class="tweet-click"type="submit"></button>
-  </form>`
+  /////////////////////////  MAKE YOUR TWEET FORM ////////////////////////////////////
+  $sideClicks.append(`<form id="yo-tweet class="tweet-click">
+    <div id="yo-name" class="tweet-click">
+    <label id="username" class="tweet-click" for="name">& You Are?</label>
+    <input type="text" id="name" class="tweet-click" />
+    </div>
+    <div id="yo-message" class="tweet-click">
+    <label id="x2"for="msg>Speak Yo mind!</label>
+    </div>
+    <button id="fake-butt" class="tweet-click"type="submit"></button>
+    </form>`
   );
-
+  
   $(`#x2`).append(`<textarea id="msg" name="clicker" class="tweet-click" placeholder="Whatchu say?"></textarea>`);
   $sideClicks.append(`<button id="post-tweet" class="tweet-click"type="submit">Yo yo!</button>`);
-$(`.tweet-click textarea`).css ({
-  vertical_align: `right`,
-  height: `70px`,
-  width: `280px`,
-  margin: `10px`,
-  padding: `8px`,
-  //display: `4px outset gold `,
-})
-$username = $(`#username`)
-//write a tweet button
-$(`#post-tweet`).on(`click`, function () {
-  document.preventDefault;
-  let dude = document.querySelector(`input[type="text"]`).value
-  let stuff = document.getElementById(`msg`).value
-  window.visitor = document.querySelector(`input[type="text"]`).value
-  if(!streams.users.hasOwnProperty(dude)){streams.users[dude] = []}
-  writeTweet(stuff);
-  console.log(matrix.slice(matrix.length - 1))
-  return singTweet(matrix[matrix.length - 1]);
-})
-
-console.log(document.querySelectorAll(`.tweetz`))
-
-
+  $(`.tweet-click textarea`).css ({
+    vertical_align: `right`,
+    height: `70px`,
+    width: `280px`,
+    margin: `10px`,
+    padding: `8px`,
+    //display: `4px outset gold `,
+  })
+  $username = $(`#username`)
+  //write a tweet button
+  $(`#post-tweet`).on(`click`, function () {
+    document.preventDefault;
+    let dude = document.querySelector(`input[type="text"]`).value
+    let stuff = document.getElementById(`msg`).value
+    window.visitor = document.querySelector(`input[type="text"]`).value
+    if(!streams.users.hasOwnProperty(dude)){streams.users[dude] = []}
+    writeTweet(stuff);
+    console.log(matrix.slice(matrix.length - 1))
+    return singTweet(matrix[matrix.length - 1]);
+  })
+  
+  
+  
 
 });
 
