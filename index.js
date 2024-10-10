@@ -59,11 +59,21 @@ $(document).ready(() => {
       //adding them directly  to the div here.
      // $(`${tweet[`user`]}`).attr(`color`, `red`);
      // $(`${tweets[spot].user}`).attr(`background-color`, `blue`);
-      $face.append(`<div id="${tweet.user}2"class="tweetz"><span id="${tweet.user}"class="clickit">@${tweet.user}</span>: ${tweet.message}
+      $face.prepend(`<div id="${tweet.user}2"class="tweetz"><span id="${tweet.user}"class="clickit">@${tweet.user}</span>: ${tweet.message}
     ${moment(tweet.created_at).format('MMM DD, YYYY, h:mm:ss')}
     ${moment(tweet.created_at).fromNow()}</div>`);
    
     
+    $(`.clickit`).click(function(e) {
+      e.stopPropagation;
+     // return console.log(`You're doing it, Peter!`);
+     //console.log(this.id)
+     //$face.empty();
+     //$(`.tweetz`).empty();
+      postTweets(streams.home.filter(tweet => tweet.user === this.id))
+    
+      
+     });
     
     /////////////////////// TWEETZ STYLES!!  //////////////////////
     $('.tweetz').css({
@@ -87,21 +97,11 @@ $(document).ready(() => {
   }
 }//set the postTweets command to the Yo button
 postTweets(streams.home);
-$tweeter.on(`click`, function (){
+$tweeter.click(function (){
   //There were just too many of them, so cut the stream short to the most recent 10.
   return postTweets(streams.home.slice(streams.home.length - 10, streams.home.length - 1));
 });
 //$(`.tweetz.tweet.user`).css(`color`, `red`);
-$(`.clickit`).on(`click`, function(e) {
-  e.stopPropagation;
- // return console.log(`You're doing it, Peter!`);
- //console.log(this.id)
- $face.empty();
- //$(`.tweetz`).empty();
-  postTweets(streams.home.filter(tweet => tweet.user === this.id))
-
-  
- });
 /////////////////// MAKE JUST ONE TWEET!! /////////////////////////
 
 const singTweet = tweet => {
@@ -189,10 +189,20 @@ const singTweet = tweet => {
     return singTweet(matrix[matrix.length - 1]);
   })
   
-  
-  
+$body.prepend(`<div id="header"><h1 id="top">Yo!SPACE!!</h1></div>`)  
+$(`#top`).css(`font-size`, `130px`);  
+$(`#top`).css(`text-font`, `comic-sans`);
+$(`#top`).css(`text-align`, `center`);
+$(`#top`).css(`color`, `red`);
+$tweeter.css(`border`, `6px outset green`);
+$tweeter.css(`width`, `40%`);
+$tweeter.css(`height`, `70px`);
+$tweeter.css(``, ``);
+$(`#header`).css(``, ``);
+$(`#header`).css(``, ``);
+$(`#header`).css(``, ``);
+$(`#header`).css(``, ``);
 
 });
-
 
 
