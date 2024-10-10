@@ -68,7 +68,7 @@ $(document).ready(() => {
       e.stopPropagation;
      // return console.log(`You're doing it, Peter!`);
      //console.log(this.id)
-     //$face.empty();
+     $face.empty();
      //$(`.tweetz`).empty();
       postTweets(streams.home.filter(tweet => tweet.user === this.id))
     
