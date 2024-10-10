@@ -197,11 +197,11 @@ $(`#top`).css(`color`, `red`);
 $tweeter.css(`border`, `6px outset green`);
 $tweeter.css(`width`, `40%`);
 $tweeter.css(`height`, `70px`);
-$tweeter.css(``, ``);
-$(`#header`).css(``, ``);
-$(`#header`).css(``, ``);
-$(`#header`).css(``, ``);
-$(`#header`).css(``, ``);
+$tweeter.css(`background-color`, `purple`);
+$tweeter.css(`color`, `gold`);
+$tweeter.css(`font-size`, `40px`);
+$tweeter.css(`margin`, `20px`);
+$body.css(`background-image`, ``);
 
 });
 
